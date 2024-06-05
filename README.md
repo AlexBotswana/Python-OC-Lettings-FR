@@ -38,6 +38,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - `source venv/bin/activate`
 - `pip install --requirement requirements.txt`
 - `python manage.py runserver`
+  - si erreur ModuleNotFoundError: No module named 'distutils' (peut-être manquant dans certaines versions de Python) exécuter la commande:  'pip install setuptools'
 - Aller sur `http://localhost:8000` dans un navigateur.
 - Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
 
@@ -52,6 +53,8 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
 - `pytest`
+  - si erreur ModuleNotFoundError: No module named 'six' (bibliothèque assurant la compatibilité entre Python2 et Python3)
+    exécuter la commande: 'pip install six'
 
 #### Base de données
 
@@ -59,13 +62,14 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Ouvrir une session shell `sqlite3`
 - Se connecter à la base de données `.open oc-lettings-site.sqlite3`
 - Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
+- Afficher les colonnes dans le tableau des profils, `pragma table_info(oc_lettings_site_profile);`
 - Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
+  oc_lettings_site_profile where favorite_city like 'B%';`
 - `.quit` pour quitter
 
 #### Panel d'administration
 
+- `python manage.py runserver`
 - Aller sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
