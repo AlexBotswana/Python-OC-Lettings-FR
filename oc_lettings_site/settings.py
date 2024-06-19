@@ -5,12 +5,12 @@ from pathlib import Path
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Sentry importation and integration with DSN
-sentry_sdk.init(
-    dsn="https://<YOUR_SENTRY_DSN>",
-    integrations=[DjangoIntegration()],
-    # Définir les niveaux de journalisation appropriés
-    traces_sample_rate=1.0,
-)
+# sentry_sdk.init(
+#     dsn="https://<YOUR_SENTRY_DSN>",
+#     integrations=[DjangoIntegration()],
+#     # Définir les niveaux de journalisation appropriés
+#     traces_sample_rate=1.0,
+# )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
