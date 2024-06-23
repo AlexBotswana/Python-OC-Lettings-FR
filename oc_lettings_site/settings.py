@@ -1,16 +1,54 @@
 import os
 import sentry_sdk
-
 from pathlib import Path
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
+import logging
+
+sentry_logging = LoggingIntegration(
+    level=logging.INFO,        # Capture info and above as breadcrumbs
+    event_level=logging.ERROR  # Send errors as events
+)
 
 # Sentry importation and integration with DSN
-# sentry_sdk.init(
-#     dsn="https://<YOUR_SENTRY_DSN>",
-#     integrations=[DjangoIntegration()],
-#     # Définir les niveaux de journalisation appropriés
-#     traces_sample_rate=1.0,
-# )
+sentry_sdk.init(
+    dsn=(
+        "https://8f149d6590f9ab4b24df3acb0056550c@o4507442557943808."
+        "ingest.de.sentry.io/4507442568626256"
+    ),
+    integrations=[DjangoIntegration(), sentry_logging],
+    enable_db_query_source=True,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
+
+# Configuration des logs
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+        'sentry': {
+            'level': 'INFO',  # Capture errors and send to Sentry
+            'class': 'sentry_sdk.integrations.logging.EventHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'sentry'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +61,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
