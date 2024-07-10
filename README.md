@@ -6,7 +6,6 @@ Site web d'Orange County Lettings
 
 ### Prérequis
 
-- Compte GitHub avec accès en lecture à ce repository
 - Git CLI
 - SQLite3 CLI
 - Interpréteur Python, version 3.6 ou supérieure
@@ -18,7 +17,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Cloner le repository
 
 - `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+- `git clone https://github.com/AlexBotswana/Python-OC-Lettings-FR.git`
 
 #### Créer l'environnement virtuel
 
@@ -35,8 +34,13 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Exécuter le site
 
 - `cd /path/to/Python-OC-Lettings-FR`
+- créer le fichier .env à la racine du projet, contenant les éléments suivants:
+    . SENTRY_DSN='votre_clé_d’API_Sentry'
+    . SECRET_KEY_PYTHON='votre_secret_key'
 - `source venv/bin/activate`
 - `pip install --requirement requirements.txt`
+- `python manage.py makemigrations`
+- `python manage.py migrate`
 - `python manage.py runserver`
   - si erreur ModuleNotFoundError: No module named 'distutils' (peut-être manquant dans certaines versions de Python) exécuter la commande:  'pip install setuptools'
 - Aller sur `http://localhost:8000` dans un navigateur.

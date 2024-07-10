@@ -1,9 +1,18 @@
+from dotenv import load_dotenv
 import os
 import sentry_sdk
 from pathlib import Path
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 import logging
+
+
+# Charger les variables d'environnement depuis le fichier .env
+load_dotenv()
+
+# Lire les variables d'environnement
+SENTRY_DSN = os.getenv('SENTRY_DSN')
+SECRET_KEY_PYTHON = os.getenv('SECRET_KEY_PYTHON')
 
 sentry_logging = LoggingIntegration(
     level=logging.INFO,        # Capture info and above as breadcrumbs
@@ -12,10 +21,7 @@ sentry_logging = LoggingIntegration(
 
 # Sentry importation and integration with DSN
 sentry_sdk.init(
-    dsn=(
-        "https://8f149d6590f9ab4b24df3acb0056550c@o4507442557943808."
-        "ingest.de.sentry.io/4507442568626256"
-    ),
+    dsn=SENTRY_DSN, # Utilisation de la variable d'environnement
     integrations=[DjangoIntegration(), sentry_logging],
     enable_db_query_source=True,
     # Set traces_sample_rate to 1.0 to capture 100%
@@ -37,7 +43,7 @@ LOGGING = {
             'class': 'logging.StreamHandler',
         },
         'sentry': {
-            'level': 'INFO',  # Capture errors and send to Sentry
+            'level': 'INFO',  # Capture info and error and send to Sentry
             'class': 'sentry_sdk.integrations.logging.EventHandler',
         },
     },
@@ -58,10 +64,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+SECRET_KEY = SECRET_KEY_PYTHON
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
