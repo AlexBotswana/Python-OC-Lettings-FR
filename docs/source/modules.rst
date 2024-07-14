@@ -1,7 +1,7 @@
-lettings
+profiles
 ========
 
 .. toctree::
    :maxdepth: 4
 
-   lettings
+   profiles

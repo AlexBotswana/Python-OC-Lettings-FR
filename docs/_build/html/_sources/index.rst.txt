@@ -1,10 +1,10 @@
-.. oc-lettings-doc documentation master file, created by
-   sphinx-quickstart on Thu Jun 27 12:24:39 2024.
+.. oc-lettings-site documentation master file, created by
+   sphinx-quickstart on Sun Jul 14 16:00:52 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to oc-lettings-doc's documentation!
-===========================================
+Welcome to oc-lettings-site's documentation!
+============================================
 
 .. toctree::
    :maxdepth: 2

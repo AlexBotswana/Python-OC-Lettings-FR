@@ -10,6 +10,11 @@ import logging
 # Charger les variables d'environnement depuis le fichier .env
 load_dotenv()
 
+""" 
+Sentry configuration
+
+"""
+
 # Lire les variables d'environnement
 SENTRY_DSN = os.getenv('SENTRY_DSN')
 SECRET_KEY_PYTHON = os.getenv('SECRET_KEY_PYTHON')
