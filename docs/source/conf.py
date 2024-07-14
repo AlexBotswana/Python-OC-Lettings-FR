@@ -29,10 +29,10 @@ print(f"DJANGO_SETTINGS_MODULE: {os.environ['DJANGO_SETTINGS_MODULE']}")  # Ajou
 django.setup()
 
 # Informations sur le projet
-project = 'OC Lettings Site'
-author = 'Votre Nom'
-version = '0.1'
-release = '0.1.0'
+project = 'oc-lettings-doc'
+copyright = '2024, Alexis Aubry'
+author = 'Alexis Aubry'
+release = '1'
 
 # Configuration générale
 extensions = [
