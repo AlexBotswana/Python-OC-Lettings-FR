@@ -13,9 +13,9 @@ build:
     # nodejs: "20"
     # rust: "1.70"
     # golang: "1.20"
-  jobs:
-    post_build:
-      - "sphinx-build -T -b html -d _build/doctrees . _build/html"
+  # jobs:
+  #   post_build:
+  #     - "sphinx-build -T -b html -d _build/doctrees . _build/html"
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
