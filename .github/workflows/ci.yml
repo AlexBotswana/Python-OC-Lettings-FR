@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_KEY_PYTHON: ${{ secrets.SECRET_KEY_PYTHON }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -20,11 +24,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.12' # spécifiez votre version de Python
-
-    - name: Set up environment variables
-      run: |
-        echo "SECRET_KEY=${{ secrets.SECRET_KEY_PYTHON }}" >> $GITHUB_ENV
-        echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> $GITHUB_ENV
 
     - name: Install dependencies
       run: |
