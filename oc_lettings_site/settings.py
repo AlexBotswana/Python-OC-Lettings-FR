@@ -10,7 +10,7 @@ import logging
 # Charger les variables d'environnement depuis le fichier .env
 load_dotenv()
 
-""" 
+"""
 Sentry configuration
 
 """
@@ -26,7 +26,7 @@ sentry_logging = LoggingIntegration(
 
 # Sentry importation and integration with DSN
 sentry_sdk.init(
-    dsn=SENTRY_DSN, # Utilisation de la variable d'environnement
+    dsn=SENTRY_DSN,  # Utilisation de la variable d'environnement
     integrations=[DjangoIntegration(), sentry_logging],
     enable_db_query_source=True,
     # Set traces_sample_rate to 1.0 to capture 100%
